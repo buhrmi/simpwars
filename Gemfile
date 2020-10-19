@@ -31,6 +31,7 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem "mini_magick"
 
 gem "discordrb"
+gem "aws-sdk-s3", require: false
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
