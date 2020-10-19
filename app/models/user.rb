@@ -3,7 +3,12 @@ require 'open-uri'
 class User < ApplicationRecord
   has_one_attached :profile_image
 
-  def self.find_or_create_from_discord auth_hash
+  def self.from_discord_author author
+    puts author.inspect
+    where(discord_id: author.id).first_or_create(name: author.name)
+  end
+
+  def self.from_discord auth_hash
     user = User.where(discord_id: auth_hash[:uid]).first_or_create
     
     if auth_hash['info']['image']
@@ -20,7 +25,7 @@ class User < ApplicationRecord
     user
   end
 
-  def self.find_or_create_from_twitch auth_hash
+  def self.from_twitch auth_hash
     
     user = User.where(twitch_id: auth_hash[:uid]).first_or_create
     

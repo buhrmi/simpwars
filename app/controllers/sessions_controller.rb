@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def create
-    user = User.find_or_create_from_discord(auth_hash)
+    user = User.from_discord(auth_hash)
     session[:user_id] = user.id
     
     # If the guild_id is set, it means that the user added our bot to that guild/server

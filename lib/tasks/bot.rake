@@ -23,7 +23,7 @@ namespace :discord do
       message = event.message
       author = message.author
       channel = message.channel
-      user = User.where(discord_id: author.id).first_or_create
+      user = User.from_discord_author author
       event.respond 'Pong!'
     end
     
