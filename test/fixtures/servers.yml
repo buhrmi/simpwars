@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  discord_id: 1
+  name: MyString
+
+two:
+  discord_id: 1
+  name: MyString

@@ -1,0 +1,25 @@
+class <%= namespace_for_class %><%= class_name.pluralize %>Controller < ApplicationController
+  def index
+    respond_with '<%= class_name.underscore.pluralize %>/index', props: {
+      <%= class_name.underscore.pluralize %>: <%= class_name %>.all
+    }
+  end
+
+  def show
+    <%= class_name.underscore %> = <%= class_name %>.find(params[:id])
+    respond_with '<%= class_name.underscore.pluralize %>/show', props: {
+      <%= class_name.underscore %>: <%= class_name.underscore %>
+    }
+  end
+
+  def update
+    <%= class_name.underscore %> = <%= class_name %>.find(params[:id])
+    <%= class_name.underscore %>.update! <%= class_name.underscore %>_params
+    respond_with
+  end
+
+  protected
+  def <%= class_name.underscore %>_params
+    params.require(:<%= class_name.underscore %>).permit_all
+  end
+end

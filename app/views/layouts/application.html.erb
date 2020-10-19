@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css2?family=Lato&family=Sansita+Swashed:wght@300;700&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/png" href="<%= image_url 'favicon.png' %>">
+
+
+    <% if @title_object %>
+      <title><%= @title_object.name %> | SimpWars</title>
+    <% else %>
+      <title>SimpWars</title>
+    <% end %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+  </head>
+
+  <body>
+    <%= yield %>
+    <%= javascript_pack_tag 'application' %>
+  </body>
+</html>

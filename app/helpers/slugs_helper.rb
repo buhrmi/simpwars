@@ -1,0 +1,2 @@
+module SlugsHelper
+end
