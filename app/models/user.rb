@@ -3,8 +3,15 @@ require 'open-uri'
 class User < ApplicationRecord
   has_one_attached :profile_image
 
+  after_initialize :fetch_name, unless: :name
+
+  def fetch_name
+    res = Discordrb::API::User.resolve('Bot ' + ENV['DISCORD_BOT_TOKEN'], self.discord_id)
+    user = JSON.parse res.body
+    self.name = user['username']
+  end
+
   def self.from_discord_author author
-    puts author.inspect
     where(discord_id: author.id).first_or_create(name: author.name)
   end
 

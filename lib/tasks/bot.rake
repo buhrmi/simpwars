@@ -19,12 +19,17 @@ namespace :discord do
     
     # This method call adds an event handler that will be called on any message that exactly contains the string "Ping!".
     # The code inside it will be executed, and a "Pong!" response will be sent to the channel.
-    bot.message(content: 'Ping!') do |event|
+    bot.message(start_with: '!attack ') do |event|
       message = event.message
       author = message.author
       channel = message.channel
       user = User.from_discord_author author
-      event.respond 'Pong!'
+      params = message.content.gsub('!attack ', '')
+      match = params.match('<@!(\d*)>')
+      if match && target_id = match[1]
+        target = User.where(discord_id: target_id).first_or_initialize
+        event.respond "<@!#{user.discord_id}> sees <@!#{target.discord_id}> and attacks!"
+      end
     end
     
     # This method call has to be put at the end of your script, it is what makes the bot actually connect to Discord. If you
