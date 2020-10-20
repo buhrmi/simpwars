@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2020_10_20_000421) do
   end
 
   create_table "servers", force: :cascade do |t|
-    t.integer "discord_id", limit: 8
+    t.bigint "discord_id"
     t.string "name"
     t.integer "admin_user_id"
     t.datetime "created_at", precision: 6, null: false
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2020_10_20_000421) do
     t.string "description"
     t.string "twitter_id"
     t.string "twitch_id"
-    t.integer "discord_id", limit: 8
+    t.bigint "discord_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
