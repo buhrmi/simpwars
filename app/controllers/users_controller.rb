@@ -8,8 +8,6 @@ class UsersController < ApplicationController
   end
 
   def new
-    return redirect_to root_url if current_user
-
     render inertia: 'users/new', props: {
     }
   end
