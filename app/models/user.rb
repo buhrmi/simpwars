@@ -3,12 +3,16 @@ require 'open-uri'
 class User < ApplicationRecord
   has_one_attached :profile_image
 
-  after_initialize :fetch_name, unless: :name
+  after_initialize :fetch_details, unless: :name
 
-  def fetch_name
+  def fetch_details
     res = Discordrb::API::User.resolve('Bot ' + ENV['DISCORD_BOT_TOKEN'], self.discord_id)
     user = JSON.parse res.body
     self.name = user['username']
+    if user['avatar']
+      image = open "#{Discordrb::API::CDN_URL}/avatars/#{discord_id}/#{user['avatar']}.png"
+      self.profile_image.attach(io: image, filename: "avatar.jpg")
+    end
   end
 
   def self.from_discord_author author
@@ -51,7 +55,9 @@ class User < ApplicationRecord
   end
 
   def profile_image_thumbnail
-    Rails.application.routes.url_helpers.rails_representation_url profile_image.variant(resize: '100x100'), only_path: true
+    if profile_image.attached?
+      Rails.application.routes.url_helpers.rails_representation_url profile_image.variant(resize: '100x100'), only_path: true
+    end
   end
 
   def to_prop

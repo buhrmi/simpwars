@@ -2,7 +2,12 @@
   import { page, inertia } from 'inertia-svelte'
 </script>
 
+
+
+
 <div class="container">
+  <h1>SimpWars <span>Alpha</span></h1>
+
   {#if $page.current_user}
     <div class="character_overview">
       <div class="portrait">
@@ -28,6 +33,12 @@
 </div>
 
 <style>
+
+h1 span {
+  font-size: 0.5em;
+  font-weight: normal;
+}
+
 footer {
   margin-top: 30px;
   padding-top: 10px;

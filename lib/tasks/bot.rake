@@ -23,12 +23,18 @@ namespace :discord do
       message = event.message
       author = message.author
       channel = message.channel
-      user = User.from_discord_author author
+      server = Server.where(discord_id: event.server.id).first_or_create
+      attacker = User.from_discord_author author
       params = message.content.gsub('!attack ', '')
       match = params.match('<@!(\d*)>')
-      if match && target_id = match[1]
-        target = User.where(discord_id: target_id).first_or_initialize
-        event.respond "<@!#{user.discord_id}> sees <@!#{target.discord_id}> and attacks!"
+      if match && defender_id = match[1]
+        defender = User.where(discord_id: defender_id).first_or_create
+        battle = Battle.new
+        battle.attacker = attacker
+        battle.defender = defender
+        battle.server = server
+        battle.execute!
+        event.respond battle.discord_info
       end
     end
     

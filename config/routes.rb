@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :battles
   resources :servers
   namespace :admin do
     resources :users

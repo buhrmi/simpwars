@@ -27,7 +27,8 @@ class ApplicationController < ActionController::Base
   end
 
   def default_url_options
-    {locale: params[:locale] || I18n.locale }
+    # {locale: params[:locale] || I18n.locale }
+    {host: ENV['HOST']}
   end
 
   def current_user
