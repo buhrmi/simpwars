@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :description
       t.string :twitter_id
       t.string :twitch_id
-      t.string :discord_id
+      t.bigint :discord_id
       t.timestamps
     end
   end
