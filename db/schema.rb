@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_19_151242) do
+ActiveRecord::Schema.define(version: 2020_10_20_000421) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2020_10_19_151242) do
   end
 
   create_table "servers", force: :cascade do |t|
-    t.integer "discord_id"
+    t.integer "discord_id", limit: 8
     t.string "name"
     t.integer "admin_user_id"
     t.datetime "created_at", precision: 6, null: false
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2020_10_19_151242) do
     t.string "description"
     t.string "twitter_id"
     t.string "twitch_id"
-    t.string "discord_id"
+    t.integer "discord_id", limit: 8
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
