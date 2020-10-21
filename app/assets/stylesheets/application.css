@@ -16,9 +16,16 @@
 
 * {
   box-sizing: border-box;
+}
+
+body {
   font-family: 'Lato', sans-serif;
 }
 
 h1 {
   font-family: 'Sansita Swashed', cursive;
+}
+
+h1 span {
+  font-family: 'Lato', sans-serif;
 }

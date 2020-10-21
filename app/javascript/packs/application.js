@@ -20,3 +20,6 @@ new InertiaApp({
     transformProps: props => props
   },
 })
+
+// Websockets
+require('../channels')

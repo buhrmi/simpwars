@@ -6,7 +6,7 @@
 
 
 <div class="container">
-  <h1>SimpWars <span>Alpha</span></h1>
+  <h1><a use:inertia href="/">SimpWars <span>Alpha</span></a></h1>
 
   {#if $page.current_user}
     <div class="character_overview">
@@ -37,6 +37,11 @@
 h1 span {
   font-size: 0.5em;
   font-weight: normal;
+}
+
+h1 a {
+  color: black !important;
+  text-decoration: none !important;
 }
 
 footer {

@@ -18,7 +18,8 @@ class Server < ApplicationRecord
   def to_prop
     {
       name: name,
-      leader: admin_user.to_prop
+      admin: admin_user.to_prop,
+      url: Rails.application.routes.url_helpers.server_url(self, only_path: true)
     }
   end
 end

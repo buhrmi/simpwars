@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "@inertiajs/inertia": "^0.1.9",
+    "@rails/actioncable": "^6.0.3-4",
     "@rails/webpacker": "^5.1.1",
     "svelte": "^3.24.0",
     "svelte-loader": "^2.13.6"

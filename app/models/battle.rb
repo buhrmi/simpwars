@@ -8,7 +8,8 @@ class Battle < ApplicationRecord
       name: name,
       results: results,
       attacker: attacker.to_prop,
-      defender: defender.to_prop
+      defender: defender.to_prop,
+      server: server.to_prop
     }
   end
 
