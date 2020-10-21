@@ -1,34 +1,37 @@
 <script>
-  import { page, inertia } from 'inertia-svelte'
+  import { inertia } from 'inertia-svelte'
+  import currentUser  from 'user'
 </script>
 
 
 
 
 <div class="container">
-  <h1><a use:inertia href="/">SimpWars <span>Alpha</span></a></h1>
-
-  {#if $page.current_user}
+  
+  {#if $currentUser}
     <div class="character_overview">
       <div class="portrait">
-        <img src={$page.current_user.profile_image} alt="{$page.current_user.name}">
+        <img src={$currentUser.profile_image} alt="{$currentUser.name}">
       </div>
       
       <div class="stats">
-        <h1 class="name">{$page.current_user.name}</h1>
-        
+        <h1 class="name">{$currentUser.name}</h1>
+        <p>Gold: {$currentUser.gold}</p>
+        <p>Exp: {$currentUser.exp}</p>
       </div>
       
       <div class="user_menu">
         <a use:inertia={{method: 'DELETE'}} href="/session">Log out</a>
       </div>
     </div>
+  {:else}
+    <h1><a use:inertia href="/">SimpWars <span>Alpha</span></a></h1>
   {/if}
 
   <slot />
 
   <footer>
-    Copyright 2020 buhrmi games | <a href="/auth/discord?bot=1{$page.current_user ? '' : '&identify=1'}">Add Server</a> | <a use:inertia href="/credits">Credits</a> | <a href="https://discord.com/invite/ykcXJgx" target="_blank">Discord</a>
+    Copyright 2020 buhrmi games | <a href="/auth/discord?bot=1{$currentUser ? '' : '&identify=1'}">Add Server</a> | <a use:inertia href="/credits">Credits</a> | <a href="https://discord.com/invite/ykcXJgx" target="_blank">Discord</a>
   </footer>
 </div>
 

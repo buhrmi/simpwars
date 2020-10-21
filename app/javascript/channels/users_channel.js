@@ -1,4 +1,5 @@
 import consumer from "./consumer"
+import currentUser from 'user'
 
 consumer.subscriptions.create("UsersChannel", {
   connected() {
@@ -11,6 +12,11 @@ consumer.subscriptions.create("UsersChannel", {
   },
 
   received(data) {
-    // Called when there's incoming data on the websocket for this channel
+    if (data.update) {
+      currentUser.update(function(user) {
+        Object.assign(user, data.update)
+        return user
+      })
+    }
   }
 });

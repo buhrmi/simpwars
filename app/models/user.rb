@@ -15,6 +15,10 @@ class User < ApplicationRecord
     end
   end
 
+  def after_save_commit
+    UsersChannel.broadcast_to(self, update: self.to_prop)
+  end
+
   def self.from_discord_author author
     where(discord_id: author.id).first_or_create(name: author.name)
   end
@@ -60,14 +64,19 @@ class User < ApplicationRecord
     end
   end
 
-  def to_prop
-    {
+  def to_prop(incl_private=false)
+    prop = {
       id: id,
       name: name,
       description: description,
       profile_image: profile_image_thumbnail,
-      url: Rails.application.routes.url_helpers.user_url(self, only_path: true)
+      url: Rails.application.routes.url_helpers.user_url(self, only_path: true),
+      exp: exp
     }
+    if incl_private
+      prop[:gold] = gold
+    end
+    prop
   end
 
 

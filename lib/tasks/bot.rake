@@ -16,7 +16,7 @@ namespace :discord do
     # After creating the bot, simply copy the token (*not* the OAuth2 secret) and put it into the
     # respective place.
     bot = Discordrb::Bot.new token: ENV['DISCORD_BOT_TOKEN']
-    
+
     # This method call adds an event handler that will be called on any message that exactly contains the string "Ping!".
     # The code inside it will be executed, and a "Pong!" response will be sent to the channel.
     bot.message(start_with: '!attack ') do |event|

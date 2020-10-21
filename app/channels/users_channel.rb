@@ -1,6 +1,7 @@
 class UsersChannel < ApplicationCable::Channel
   def subscribed
-    # stream_from "some_channel"
+    stream_for current_user
+    UsersChannel.broadcast_to(User.first, update: {gold: 123})
   end
 
   def unsubscribed

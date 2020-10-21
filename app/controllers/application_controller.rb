@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   inertia_share do
     {
-      current_user: current_user.try(:to_prop),
+      current_user: current_user.try(:to_prop, true),
       flash: flash.to_hash,
       layout: 'layout'
     }
@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @current_user ||= User.find(cookies.signed[:user_id]) if cookies.signed[:user_id]
   end
 
 end
