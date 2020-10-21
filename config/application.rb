@@ -10,7 +10,7 @@ module SimpWars
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
-    Rails.application.routes.default_url_options[:host] = ENV['HOST']
+    Rails.application.routes.default_url_options[:host] = ENV['DEFAULT_HOST']
     Rails.application.routes.default_url_options[:protocol] = 'https'
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
