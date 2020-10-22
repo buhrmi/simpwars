@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_21_160527) do
+ActiveRecord::Schema.define(version: 2020_10_22_193818) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 2020_10_21_160527) do
     t.json "results"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "winner_id"
+    t.string "winner_type"
   end
 
   create_table "servers", force: :cascade do |t|
@@ -59,11 +61,11 @@ ActiveRecord::Schema.define(version: 2020_10_21_160527) do
     t.string "description"
     t.string "twitter_id"
     t.string "twitch_id"
-    t.bigint "discord_id"
+    t.integer "discord_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "gold", default: 0
-    t.integer "exp", default: 0
+    t.integer "coin", default: 0
+    t.integer "honor", default: 0
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

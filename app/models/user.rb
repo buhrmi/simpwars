@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_one_attached :profile_image
 
   after_initialize :fetch_details, unless: :name
+  after_save_commit :broadcast_changes
 
   def fetch_details
     res = Discordrb::API::User.resolve('Bot ' + ENV['DISCORD_BOT_TOKEN'], self.discord_id)
@@ -15,8 +16,9 @@ class User < ApplicationRecord
     end
   end
 
-  def after_save_commit
-    UsersChannel.broadcast_to(self, update: self.to_prop)
+  def broadcast_changes
+    update = saved_changes.map { |k,v| [k, v[1]] }.to_h
+    UsersChannel.broadcast_to(self, update: update )
   end
 
   def self.from_discord_author author
@@ -71,10 +73,10 @@ class User < ApplicationRecord
       description: description,
       profile_image: profile_image_thumbnail,
       url: Rails.application.routes.url_helpers.user_url(self, only_path: true),
-      exp: exp
+      honor: honor
     }
     if incl_private
-      prop[:gold] = gold
+      prop[:coin] = coin
     end
     prop
   end

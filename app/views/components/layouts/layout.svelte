@@ -16,8 +16,8 @@
       
       <div class="stats">
         <h1 class="name">{$currentUser.name}</h1>
-        <p>Gold: {$currentUser.gold}</p>
-        <p>Exp: {$currentUser.exp}</p>
+        <p>Coin: {$currentUser.coin}</p>
+        <p>Honor: {$currentUser.honor}</p>
       </div>
       
       <div class="user_menu">

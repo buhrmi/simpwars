@@ -5,7 +5,7 @@ Join the epic battle of the simps. Only on https://simpwars.net.
 ## Developers
 
 **This sections deals with developing SimpWars itself.**
-To run the bot locally or on your own server, you need to install some dependencies.
+To run the game locally or on your own server, you need to install some dependencies.
 
 ### Dependencies
 
