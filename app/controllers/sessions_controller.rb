@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
       server = Server.where(discord_id: params[:guild_id]).first_or_initialize
       server.admin_user = current_user
       server.save!
+      flash[:bot_added] = true
       redirect_to server
     else
       redirect_to current_user
