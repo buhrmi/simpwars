@@ -16,6 +16,8 @@
       
       <div class="stats">
         <h1 class="name">{$currentUser.name}</h1>
+        <p>Level: {$currentUser.level}</p>
+        <p>HP: {$currentUser.current_hp}/{$currentUser.max_hp}</p>
         <p>Coin: {$currentUser.coin}</p>
         <p>Honor: {$currentUser.honor}</p>
       </div>

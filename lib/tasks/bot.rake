@@ -37,6 +37,20 @@ namespace :discord do
         event.respond battle.discord_info
       end
     end
+
+    bot.message(content: '!hp') do |event|
+      message = event.message
+      author = message.author
+      channel = message.channel
+      server = Server.where(discord_id: event.server.id).first_or_create
+      user = User.from_discord_author author
+    
+      text = "<@!#{user.discord_id}>: #{user.hp_emoji} #{user.current_hp.round}/#{user.max_hp} HP (#{user.current_hp_percent.round}%)"
+      if user.current_hp < user.max_hp
+        text += ", #{user.remaining_seconds.round} seconds till full"
+      end
+      event.respond text
+    end
     
     # This method call has to be put at the end of your script, it is what makes the bot actually connect to Discord. If you
     # leave it out (try it!) the script will simply stop and the bot will not appear online.

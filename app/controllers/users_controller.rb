@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     @title_object = user = User.find(params[:id])
 
     render inertia: 'users/show', props: {
-      user: user
+      user: user.to_prop
     }
   end
 

@@ -1,11 +1,17 @@
 require 'open-uri'
 
 class User < ApplicationRecord
+  include Attackable
+
   has_one_attached :profile_image
 
   after_initialize :fetch_details, unless: :name
   after_save_commit :broadcast_changes
 
+  def broadcast_changes
+    UsersChannel.broadcast_to(self, update: to_prop(true) )
+  end
+  
   def fetch_details
     res = Discordrb::API::User.resolve('Bot ' + ENV['DISCORD_BOT_TOKEN'], self.discord_id)
     user = JSON.parse res.body
@@ -16,10 +22,6 @@ class User < ApplicationRecord
     end
   end
 
-  def broadcast_changes
-    update = saved_changes.map { |k,v| [k, v[1]] }.to_h
-    UsersChannel.broadcast_to(self, update: update )
-  end
 
   def self.from_discord_author author
     where(discord_id: author.id).first_or_create(name: author.name)
@@ -67,13 +69,17 @@ class User < ApplicationRecord
   end
 
   def to_prop(incl_private=false)
+  
     prop = {
       id: id,
       name: name,
       description: description,
       profile_image: profile_image_thumbnail,
       url: Rails.application.routes.url_helpers.user_url(self, only_path: true),
-      honor: honor
+      honor: honor,
+      level: level,
+      current_hp: current_hp,
+      max_hp: max_hp
     }
     if incl_private
       prop[:coin] = coin

@@ -28,13 +28,17 @@ gem 'omniauth-twitch'
 gem 'omniauth-twitter'
 gem 'omniauth-discord'
 gem 'dotenv-rails', groups: [:development, :test]
-gem "mini_magick"
+
+# This is used to compile character functions (eg regeneration time etc) to javascript and make them
+# available client-side
+gem 'ruby2js'
 
 gem "discordrb"
 gem "aws-sdk-s3", require: false
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
+gem "mini_magick"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

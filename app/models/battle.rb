@@ -18,11 +18,24 @@ class Battle < ApplicationRecord
   end
 
   def execute!
+    # TODO: implement some real combat mechanics.
+    attacker.remaining_hp = attacker.current_hp / 2
+    defender.remaining_hp = 0
+    
     self.winner = attacker
+
+
+
     won_coin = rand(12..22)
     won_honor = rand(22..25)
     winner.coin += won_coin
     winner.honor += won_honor
+    attacker.last_hp = attacker.remaining_hp
+    attacker.last_hp_updated_at = Time.now
+    
+    defender.last_hp = defender.remaining_hp
+    defender.last_hp_updated_at = Time.now
+
     self.results = {
       attacker: {
         coin: won_coin,
