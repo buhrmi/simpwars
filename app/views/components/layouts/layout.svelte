@@ -35,7 +35,7 @@
   <slot />
 
   <footer>
-    Copyright 2020 Stefan Buhrmester | <a href="/auth/discord?bot=1{$currentUser ? '' : '&identify=1'}">Add Server</a> | <a use:inertia href="/credits">Credits</a> | <a href="https://discord.com/invite/ykcXJgx" target="_blank">Discord</a>
+    Copyright 2020 Stefan Buhrmester | <a href="/auth/discord?bot=1{$currentUser ? '' : '&identify=1'}">Add to Server</a> | <a use:inertia href="/credits">Credits</a> | <a href="https://discord.com/invite/ykcXJgx" target="_blank">Discord</a>
   </footer>
 </div>
 
