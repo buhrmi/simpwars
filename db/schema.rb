@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_23_211945) do
+ActiveRecord::Schema.define(version: 2020_10_26_083511) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -67,7 +67,9 @@ ActiveRecord::Schema.define(version: 2020_10_23_211945) do
     t.integer "coin", default: 0
     t.integer "honor", default: 0
     t.integer "last_hp", default: 1000
-    t.datetime "last_hp_updated_at", default: "2020-10-24 02:23:26"
+    t.datetime "last_hp_updated_at", default: "2020-10-26 08:33:56"
+    t.integer "server_id"
+    t.index ["server_id"], name: "index_users_on_server_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

@@ -10,6 +10,8 @@ class SessionsController < ApplicationController
       server.save!
       flash[:bot_added] = true
       redirect_to server
+      current_user.server = server
+      current_user.save
     else
       redirect_to current_user
     end

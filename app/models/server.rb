@@ -2,7 +2,8 @@ class Server < ApplicationRecord
   has_one_attached :icon
 
   belongs_to :admin_user, class_name: 'User', optional: true
-
+  has_many :users
+  
   before_create :fetch_info
 
   def fetch_info

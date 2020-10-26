@@ -8,7 +8,7 @@
   Heed the call of the Serverlords and restore honor and glory to their kingdom.<br>
 </p>
 
-<a href="/auth/discord?bot=1">Install on your Server (FREE)</a> 
+<a href="/auth/discord?bot=1">Install on your Server</a> 
 
   or <a href="/auth/discord?identify=1">Log In</a> 
 {/if}

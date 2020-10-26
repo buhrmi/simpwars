@@ -24,11 +24,11 @@ namespace :discord do
       author = message.author
       channel = message.channel
       server = Server.where(discord_id: event.server.id).first_or_create
-      attacker = User.from_discord_author author
+      attacker = User.from_discord_author author, server
       params = message.content.gsub('!attack ', '')
       match = params.match('<@!(\d*)>')
       if match && defender_id = match[1]
-        defender = User.where(discord_id: defender_id).first_or_create
+        defender = User.where(discord_id: defender_id).first_or_create(server: server)
         battle = Battle.new
         battle.attacker = attacker
         battle.defender = defender
@@ -48,7 +48,7 @@ namespace :discord do
       author = message.author
       channel = message.channel
       server = Server.where(discord_id: event.server.id).first_or_create
-      user = User.from_discord_author author
+      user = User.from_discord_author author, server
     
       text = "<@!#{user.discord_id}>: #{user.hp_emoji} #{user.current_hp.round}/#{user.max_hp} HP (#{user.current_hp_percent.round}%)"
       if user.current_hp < user.max_hp

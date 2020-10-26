@@ -5,8 +5,10 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image
 
-  after_initialize :fetch_details, unless: :name
+  before_create :fetch_details
   after_save_commit :broadcast_changes
+  
+  belongs_to :server, optional: true
 
   def broadcast_changes
     UsersChannel.broadcast_to(self, update: to_prop(true) )
@@ -23,8 +25,8 @@ class User < ApplicationRecord
   end
 
 
-  def self.from_discord_author author
-    where(discord_id: author.id).first_or_create(name: author.name)
+  def self.from_discord_author author, server
+    where(discord_id: author.id).first_or_create(name: author.name, server: server)
   end
 
   def self.from_discord auth_hash
