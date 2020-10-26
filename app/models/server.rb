@@ -1,7 +1,7 @@
 class Server < ApplicationRecord
   has_one_attached :icon
 
-  belongs_to :admin_user, class_name: 'User'
+  belongs_to :admin_user, class_name: 'User', optional: true
 
   before_create :fetch_info
 
@@ -18,7 +18,7 @@ class Server < ApplicationRecord
   def to_prop
     {
       name: name,
-      admin: admin_user.to_prop,
+      admin: admin_user.try(:to_prop),
       url: Rails.application.routes.url_helpers.server_url(self, only_path: true)
     }
   end

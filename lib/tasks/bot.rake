@@ -35,7 +35,12 @@ namespace :discord do
         battle.server = server
         battle.execute!
         event.respond battle.discord_info
+        event.respond ":sparkles: **LEVEL UP** :sparkles: Congratulations, <@!#{battle.winner.discord_id}> reached **Level #{battle.winner.level}**"
       end
+    end
+
+    bot.message(content: '!inv') do |event|
+      event.respond "You carry 0 items. To manage your inventory go to #{Rails.application.routes.url_helpers.inventory_url}"
     end
 
     bot.message(content: '!hp') do |event|

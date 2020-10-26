@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 2020_10_23_211945) do
     t.integer "coin", default: 0
     t.integer "honor", default: 0
     t.integer "last_hp", default: 1000
-    t.datetime "last_hp_updated_at", default: "2020-10-23 22:28:15"
+    t.datetime "last_hp_updated_at", default: "2020-10-24 02:23:26"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

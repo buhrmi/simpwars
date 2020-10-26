@@ -2,12 +2,15 @@
   import { page, inertia } from 'inertia-svelte'
 </script>
 
+{#if !$page.current_user} 
 <p>
-  SimpWars is an in-development browser-based multiplayer game created by buhrmi.
+  An evil lord has emerged and is turning the people of Discordia into simps.<br>
+  Heed the call of the Serverlords and restore honor and glory to their kingdom.<br>
 </p>
 
-{#if !$page.current_user}
-  <a href="/auth/discord?identify=1">Log In</a> 
+<a href="/auth/discord?bot=1">Install game</a> 
+
+  or <a href="/auth/discord?identify=1">Log In</a> 
 {/if}
 
 

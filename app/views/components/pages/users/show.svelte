@@ -7,4 +7,4 @@ export let user
 
 <h2>{user.name}</h2>
 Level: {user.level}
-HP: {user.current_hp}/{user.max_hp}
+HP: {Math.floor(user.current_hp)}/{user.max_hp}

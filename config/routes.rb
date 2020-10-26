@@ -1,27 +1,27 @@
 Rails.application.routes.draw do
+  # namespace :admin do
+  #   resources :users
+  #   resources :pages
+    
+  #   root to: "users#index"
+  # end
+  
   resources :battles
   resources :servers
-  namespace :admin do
-    resources :users
-    resources :pages
-
-    root to: "users#index"
-  end
-
-  resource :session
   resources :users
+  resources :items
+  resource :session
 
-  # Guilds are called "servers" in the discord UI
-  resources :discord_servers
   
   resources :discord_interactions
 
+  get '/inventory', to: 'items#index'
+  
+  get '/auth/:provider/callback', to: 'sessions#create'
+  
   scope '(:locale)', locale: /#{I18n.available_locales.join('|')}/ do
     get '/(:slug)', to: 'slugs#show'
   end
-
-  
-  get '/auth/:provider/callback', to: 'sessions#create'
   
   root to: 'users#new'
 end
