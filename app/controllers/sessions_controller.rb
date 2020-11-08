@@ -15,7 +15,11 @@ class SessionsController < ApplicationController
     else
       redirect_to current_user
     end
-    
+  end
+
+  def update
+    cookies.signed[:player_id] = params[:player_id]
+    redirect_to root_url
   end
   
   def destroy

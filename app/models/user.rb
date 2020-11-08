@@ -1,10 +1,9 @@
 require 'open-uri'
 
 class User < ApplicationRecord
-  include Attackable
-
   has_one_attached :profile_image
-
+  has_many :players
+  
   before_create :fetch_details
   after_save_commit :broadcast_changes
   
@@ -24,11 +23,6 @@ class User < ApplicationRecord
     end
   end
 
-
-  def self.from_discord_author author, server
-    where(discord_id: author.id).first_or_create(name: author.name, server: server)
-  end
-
   def self.from_discord auth_hash
     user = User.where(discord_id: auth_hash[:uid]).first_or_create
     
@@ -40,7 +34,6 @@ class User < ApplicationRecord
     user.update!(
       name: auth_hash['info']['name'],
       email: auth_hash['info']['email'],
-      nickname: auth_hash['info']['nickname'],
       description: auth_hash['info']['description']
     )
     user
@@ -77,16 +70,8 @@ class User < ApplicationRecord
       name: name,
       description: description,
       profile_image: profile_image_thumbnail,
-      url: Rails.application.routes.url_helpers.user_url(self, only_path: true),
-      honor: honor,
-      level: level,
-      current_hp: current_hp,
-      max_hp: max_hp
+      url: Rails.application.routes.url_helpers.user_url(self, only_path: true)
     }
-    if incl_private
-      prop[:coin] = coin
-    end
-    prop
   end
 
 

@@ -19,27 +19,23 @@ class Battle < ApplicationRecord
 
   def execute!
     # TODO: implement some real combat mechanics.
-    attacker.remaining_hp = attacker.current_hp / 2
-    defender.remaining_hp = 0
+    attacker.last_hp = attacker.current_hp / 2
+    defender.last_hp = 0
     
     self.winner = attacker
 
 
-
     won_coin = rand(12..22)
-    won_honor = rand(22..25)
+    won_exp = rand(22..25)
     winner.coin += won_coin
-    winner.honor += won_honor
-    attacker.last_hp = attacker.remaining_hp
+    winner.exp += won_exp
     attacker.last_hp_updated_at = Time.now
-    
-    defender.last_hp = defender.remaining_hp
     defender.last_hp_updated_at = Time.now
 
     self.results = {
       attacker: {
         coin: won_coin,
-        honor: won_honor
+        exp: won_exp
       }
     }
     winner.save!
@@ -62,13 +58,13 @@ class Battle < ApplicationRecord
     results[:attacker] && results[:attacker][:coin]
   end
 
-  def attacker_honor
-    results[:attacker] && results[:attacker][:honor]
+  def attacker_exp
+    results[:attacker] && results[:attacker][:exp]
   end
 
   def results_text
     text = "#{winner.name} wins the battle! #{loser.name} died and will be resurrected after 3 minutes."
-    text += "\n#{attacker.name} receives :coin: **#{attacker_coin} Coin** and :fleur_de_lis: **#{attacker_honor} Honor**"
+    text += "\n#{attacker.name} receives :coin: **#{attacker_coin} Coin** and :fleur_de_lis: **#{attacker_exp} Experience**"
   end
 
   def name

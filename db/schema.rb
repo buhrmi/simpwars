@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_26_083511) do
+ActiveRecord::Schema.define(version: 2020_11_08_131525) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -46,17 +46,35 @@ ActiveRecord::Schema.define(version: 2020_10_26_083511) do
     t.string "winner_type"
   end
 
+  create_table "players", force: :cascade do |t|
+    t.string "name"
+    t.integer "server_id"
+    t.integer "user_id"
+    t.integer "coin", default: 0
+    t.integer "exp", default: 0
+    t.integer "last_hp", default: 100
+    t.integer "last_hp_updated_at", default: 0
+    t.integer "last_attacked_at", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["exp"], name: "index_players_on_exp"
+    t.index ["name"], name: "index_players_on_name"
+    t.index ["server_id"], name: "index_players_on_server_id"
+    t.index ["user_id"], name: "index_players_on_user_id"
+  end
+
   create_table "servers", force: :cascade do |t|
     t.bigint "discord_id"
     t.string "name"
     t.integer "admin_user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "players_count"
+    t.index ["players_count"], name: "index_servers_on_players_count"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "nickname"
     t.string "email"
     t.string "description"
     t.string "twitter_id"
@@ -64,10 +82,6 @@ ActiveRecord::Schema.define(version: 2020_10_26_083511) do
     t.integer "discord_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "coin", default: 0
-    t.integer "honor", default: 0
-    t.integer "last_hp", default: 1000
-    t.datetime "last_hp_updated_at", default: "2020-10-26 08:33:56"
     t.integer "server_id"
     t.index ["server_id"], name: "index_users_on_server_id"
   end

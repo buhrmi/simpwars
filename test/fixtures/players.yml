@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  server_id: 1
+  user_id: 1
+  coin: 1
+  exp: 1
+  last_hp: 1
+  last_hp_updated_at: 1
+  last_attacked_at: 1
+
+two:
+  name: MyString
+  server_id: 1
+  user_id: 1
+  coin: 1
+  exp: 1
+  last_hp: 1
+  last_hp_updated_at: 1
+  last_attacked_at: 1

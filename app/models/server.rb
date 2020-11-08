@@ -3,6 +3,8 @@ class Server < ApplicationRecord
 
   belongs_to :admin_user, class_name: 'User', optional: true
   has_many :users
+
+  has_many :players, counter_cache: true
   
   before_create :fetch_info
 
@@ -18,6 +20,8 @@ class Server < ApplicationRecord
 
   def to_prop
     {
+      id: id,
+      players_count: players_count,
       name: name,
       admin: admin_user.try(:to_prop),
       url: Rails.application.routes.url_helpers.server_url(self, only_path: true)

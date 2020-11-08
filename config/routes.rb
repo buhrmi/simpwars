@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :players
   # namespace :admin do
   #   resources :users
   #   resources :pages
@@ -23,5 +24,5 @@ Rails.application.routes.draw do
     get '/(:slug)', to: 'slugs#show'
   end
   
-  root to: 'users#new'
+  root to: 'servers#index'
 end

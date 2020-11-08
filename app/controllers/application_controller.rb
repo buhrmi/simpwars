@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
 
   inertia_share do
     {
+      current_player: current_player.try(:to_prop, true),
       current_user: current_user.try(:to_prop, true),
       flash: flash.to_hash,
       layout: 'layout'
@@ -29,6 +30,11 @@ class ApplicationController < ActionController::Base
   def default_url_options
     # {locale: params[:locale] || I18n.locale }
     {host: ENV['DEFAULT_HOST']}
+  end
+
+  def current_player
+    return unless current_user
+    @current_player ||= current_user.players.find_by_id(cookies.signed[:player_id]) if cookies.signed[:player_id]
   end
 
   def current_user

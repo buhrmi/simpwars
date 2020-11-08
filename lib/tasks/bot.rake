@@ -24,11 +24,11 @@ namespace :discord do
       author = message.author
       channel = message.channel
       server = Server.where(discord_id: event.server.id).first_or_create
-      attacker = User.from_discord_author author, server
+      attacker = Player.from_discord author.id, server
       params = message.content.gsub('!attack ', '')
       match = params.match('<@!(\d*)>')
       if match && defender_id = match[1]
-        defender = User.where(discord_id: defender_id).first_or_create(server: server)
+        defender = Player.from_discord defender_id, server
         battle = Battle.new
         battle.attacker = attacker
         battle.defender = defender

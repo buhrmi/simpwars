@@ -1,19 +1,19 @@
 <script>
 import { inertia } from 'inertia-svelte'
-export let user
+export let player
 </script>
 
-<div class="userinfo">
-  <a use:inertia href={user.url}>
+<div class="playerinfo">
+  <a use:inertia href={player.url}>
     <div class="portrait">
-      <img src={user.profile_image}>
+      <img src={player.profile_image}>
     </div>
-    {user.name}
+    {player.name}
   </a>
 </div>
 
 <style>
-  .userinfo {
+  .playerinfo {
     display: inline-block;
   }
   .portrait {

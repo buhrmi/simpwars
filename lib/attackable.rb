@@ -1,8 +1,5 @@
-# This module is included by all attackble classes.
-# It is also compiled to javascript by ruby2js and used client-side
+# This module is used client-side to calculate HP regeneration etc.
 module Attackable
-  attr_accessor :remaining_hp
-
   def stats
     {
       con: 5
@@ -14,8 +11,8 @@ module Attackable
   end
 
   def current_hp
-    return [self.last_hp, 0].max() if self.start_regenerating_at() > servertime
-    [[self.last_hp, 0].max() + (servertime - self.start_regenerating_at()) * self.hp_per_second(), self.max_hp()].min()
+    return [self.last_hp, 0].max() if self.start_regenerating_at > current_time
+    [[self.last_hp, 0].max() + (current_time - self.start_regenerating_at) * self.hp_per_second, self.max_hp].min()
   end
 
   def hp_emoji
@@ -57,10 +54,10 @@ module Attackable
   end
 
   def remaining_seconds
-    [start_regenerating_at - servertime, 0].max + (max_hp - current_hp) / hp_per_second
+    [start_regenerating_at - current_time, 0].max + (max_hp - current_hp) / hp_per_second
   end
 
-  def servertime
-    Time.now
+  def current_time
+    Time.unix
   end
 end

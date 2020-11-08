@@ -1,13 +1,13 @@
 <script>
 import { inertia } from 'inertia-svelte'
 export let battle
-import Info from 'components/userinfo.svelte'
+import Info from 'components/PlayerInfo.svelte'
 </script>
 
 <h2>
-  <Info user={battle.attacker} />
+  <Info player={battle.attacker} />
   vs
-  <Info user={battle.defender} />
+  <Info player={battle.defender} />
 </h2>
 
 This battle took place on <a href={battle.server.url}>{battle.server.name}</a>
