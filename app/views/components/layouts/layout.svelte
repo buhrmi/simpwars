@@ -24,7 +24,7 @@
   <slot />
 
   <footer>
-    <a use:inertia href="/credits">Credits</a> | <a href="https://discord.com/invite/ykcXJgx" target="_blank">Discord</a>
+    <a use:inertia href="/credits">Credits</a> | <a href="https://discord.gg/VH2haTs" target="_blank">Discord</a>
   </footer>
 </div>
 
