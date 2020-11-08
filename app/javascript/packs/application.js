@@ -7,7 +7,6 @@
 import Axios from 'axios'
 const tag = document.querySelector('meta[name=csrf-token]')
 if (tag) Axios.defaults.headers.common['X-CSRF-TOKEN'] = tag.content;
-import {Attackable} from 'attackable.rb'
 
 // Init Inertiajs
 import { InertiaApp } from 'inertia-svelte'
@@ -23,7 +22,6 @@ new InertiaApp({
 })
 
 require('./utils')
-window.attackable = Attackable
 
 // Websockets
 require('../channels')
