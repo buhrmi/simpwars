@@ -5,9 +5,9 @@ export let players
 export let user
 </script>
 
-{#if $currentUser.id == user.id}
+{#if $currentUser && $currentUser.id == user.id}
   <h2>Hello {user.name}</h2>  
-  {#if players}
+  {#if players.length}
     <p>You currently play on the following servers:</p>
     {#each players as player}
       <div class="server">  
