@@ -4,9 +4,9 @@
   export let servers
 </script>
 
-<p>This game is in early development. Data will be reset without any prior announcement.</p>
+<p>Welcome to SimpWars. This game is in early development. Data might be occasionally reset without any prior announcement.</p>
 
-<h2>Servers</h2>
+<h2>You can play SimpWars on the following servers</h2>
 
 
 {#each servers as server}

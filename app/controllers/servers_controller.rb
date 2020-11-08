@@ -1,7 +1,11 @@
 class ServersController < ApplicationController
   def show
     server = Server.find(params[:id])
-    if current_user && player = current_user.players.where(server: server).first
+    if current_user
+      player = current_user.players.where(server: server).first
+      if !player
+        player = Player.from_discord current_user.discord_id, server
+      end
       cookies.signed[:player_id] = player.id
     end
     render inertia: 'servers/show', props: {
