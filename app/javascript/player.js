@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store'
-import { page } from 'inertia-svelte'
+import { page } from '@inertiajs/inertia-svelte'
 
 const player = writable({})
 page.subscribe(function(pageProps) {

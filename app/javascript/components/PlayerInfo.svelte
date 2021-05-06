@@ -1,5 +1,5 @@
 <script>
-import { inertia } from 'inertia-svelte'
+import { inertia } from '@inertiajs/inertia-svelte'
 export let player
 </script>
 

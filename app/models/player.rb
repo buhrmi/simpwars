@@ -9,7 +9,7 @@ class Player < ApplicationRecord
   def self.from_discord discord_id, server
     user = User.where(discord_id: discord_id).first_or_create(server: server)
 
-    where(server: server, user: user).first_or_create(name: user.name)
+    where(user: user).first_or_create(name: user.name)
   end
 
   def to_prop incl_private=false
@@ -19,8 +19,7 @@ class Player < ApplicationRecord
       exp: exp,
       level: level,
       current_hp: current_hp,
-      max_hp: max_hp,
-      server: server.to_prop
+      max_hp: max_hp
     }
     if incl_private
       prop[:coin] = coin

@@ -7,18 +7,21 @@
 import Axios from 'axios'
 const tag = document.querySelector('meta[name=csrf-token]')
 if (tag) Axios.defaults.headers.common['X-CSRF-TOKEN'] = tag.content;
-
+import Layout from 'components/layout.svelte'
 // Init Inertiajs
-import { InertiaApp } from 'inertia-svelte'
+import { InertiaApp } from '@inertiajs/inertia-svelte'
 const app = document.getElementById('app')
 new InertiaApp({
   target: app,
   props: {
     initialPage: JSON.parse(app.dataset.page),
-    resolveComponent: name => import(`components/pages/${name}.svelte`).then(module => module.default),
-    resolveLayout: name => require(`components/layouts/${name}.svelte`).default,
-    transformProps: props => props
-  },
+    resolveComponent: name => import(`components/${name}.svelte`).then(function(page) {
+      if (page.layout === undefined) {
+        page.layout = Layout
+      }
+      return page
+    })
+  }
 })
 
 require('./utils')

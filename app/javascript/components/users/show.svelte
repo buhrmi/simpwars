@@ -1,6 +1,6 @@
 <script>
 import currentUser from 'user'
-import { page, inertia } from 'inertia-svelte'
+import { page, inertia } from '@inertiajs/inertia-svelte'
 export let players
 export let user
 </script>

@@ -1,5 +1,5 @@
 <script>
-  import { inertia } from 'inertia-svelte'
+  import { inertia } from '@inertiajs/inertia-svelte'
   import currentUser  from 'user'
   import currentPlayer from 'player'
 </script>
@@ -24,7 +24,7 @@
   <slot />
 
   <footer>
-    <a use:inertia href="/credits">Credits</a> | <a href="https://discord.gg/VH2haTs" target="_blank">Discord</a>
+    <a href="/auth/discord?identify=1">Add SimpWars to your server</a> 
   </footer>
 </div>
 
