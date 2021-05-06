@@ -10,7 +10,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
       if request.GET['bot']
         scope << 'bot' 
       end
-      
       env['omniauth.strategy'].options.merge!(scope: scope.join(' '))
     }
   # provider :twitter, ENV["TWITTER_API_KEY"], ENV["TWITTER_SECRET_KEY"]

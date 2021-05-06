@@ -4,12 +4,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6', '>= 6'
+gem 'rails', '~> 6'
 
 # Use Puma as the app server
 gem 'puma', '~> 4'
 # Use SCSS for stylesheets
-gem 'sass-rails', '>= 6'
+gem 'sass-rails'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 4'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -23,7 +23,7 @@ gem 'redis', '~> 4'
 
 gem 'inertia_rails'
 gem "administrate"
-gem 'omniauth'
+gem 'omniauth', '~> 1'
 gem 'omniauth-discord'
 gem 'dotenv-rails', groups: [:development, :test]
 
